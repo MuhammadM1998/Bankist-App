@@ -1,49 +1,10 @@
 'use strict';
+let accounts = [];
+const test = await fetch('./data/accounts.json')
+  .then((res) => res.json())
+  .then((data) => (accounts = data));
 
-// BANKIST APP
-
-// Data
-const account1 = {
-  owner: 'Jonas Schmedtmann',
-  movements: [200, 455.23, -306.5, 25000, -642.21, -133.9, 79.97, 1300],
-  interestRate: 1.2, // %
-  pin: 1111,
-
-  movementsDates: [
-    '2019-11-18T21:31:17.178Z',
-    '2019-12-23T07:42:02.383Z',
-    '2020-01-28T09:15:04.904Z',
-    '2020-04-01T10:17:24.185Z',
-    '2020-05-08T14:11:59.604Z',
-    '2020-05-27T17:01:17.194Z',
-    '2020-07-11T23:36:17.929Z',
-    '2020-07-12T10:51:36.790Z',
-  ],
-  currency: 'EUR',
-  locale: 'pt-PT', // de-DE
-};
-
-const account2 = {
-  owner: 'Jessica Davis',
-  movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
-  interestRate: 1.5,
-  pin: 2222,
-
-  movementsDates: [
-    '2019-12-05T13:15:33.035Z',
-    '2019-12-04T09:48:16.867Z',
-    '2019-12-25T06:04:23.907Z',
-    '2020-01-25T14:18:46.235Z',
-    '2021-12-03T14:43:26.374Z',
-    '2021-12-04T18:49:59.371Z',
-    '2021-12-05T12:01:20.894Z',
-    '2021-12-06T12:01:20.894Z',
-  ],
-  currency: 'USD',
-  locale: 'en-US',
-};
-
-const accounts = [account1, account2];
+// const accounts = [account1, account2];
 
 // Elements
 const labelWelcome = document.querySelector('.welcome');
@@ -143,7 +104,7 @@ const calcDisplayBalance = function (account) {
 
 const calcDisplaySummary = function (account) {
   const incomes = account.movements
-    .filter(mov => mov > 0)
+    .filter((mov) => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
 
   labelSumIn.textContent = formatCurrencies(
@@ -153,7 +114,7 @@ const calcDisplaySummary = function (account) {
   );
 
   const out = account.movements
-    .filter(mov => mov < 0)
+    .filter((mov) => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
 
   labelSumOut.textContent = formatCurrencies(
@@ -163,9 +124,9 @@ const calcDisplaySummary = function (account) {
   );
 
   const interest = account.movements
-    .filter(mov => mov > 0)
-    .map(deposit => (deposit * account.interestRate) / 100)
-    .filter(interest => interest >= 1)
+    .filter((mov) => mov > 0)
+    .map((deposit) => (deposit * account.interestRate) / 100)
+    .filter((interest) => interest >= 1)
     .reduce((acc, interest) => acc + interest, 0);
 
   labelSumInterest.textContent = formatCurrencies(
@@ -180,7 +141,7 @@ const createUsername = function (accounts) {
     account.username = account.owner
       .toLowerCase()
       .split(' ')
-      .map(name => name[0])
+      .map((name) => name[0])
       .join('');
   });
 };
@@ -232,7 +193,7 @@ let currentAccount, timer;
 const HandleLogin = function (e) {
   e.preventDefault();
   currentAccount = accounts.find(
-    acc => acc.username === inputLoginUsername.value
+    (acc) => acc.username === inputLoginUsername.value.toLowerCase()
   );
 
   if (currentAccount?.pin === +inputLoginPin.value) {
@@ -275,7 +236,7 @@ btnLogin.addEventListener('click', HandleLogin);
 const HandleTransfer = function (e) {
   e.preventDefault();
   const receiverAccount = accounts.find(
-    acc => acc.username === inputTransferTo.value
+    (acc) => acc.username === inputTransferTo.value
   );
   const amount = +inputTransferAmount.value;
 
@@ -312,7 +273,10 @@ const HandleLoan = function (e) {
   e.preventDefault();
   const amount = Math.floor(inputLoanAmount.value);
 
-  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+  if (
+    amount > 0 &&
+    currentAccount.movements.some((mov) => mov >= amount * 0.1)
+  ) {
     const acceptLoan = function () {
       // Add Movement
       currentAccount.movements.push(amount);
@@ -345,7 +309,7 @@ const HandleCloseAcc = function (e) {
   ) {
     // Delete Account
     const index = accounts.findIndex(
-      acc => (acc.username = currentAccount.username)
+      (acc) => (acc.username = currentAccount.username)
     );
     accounts.splice(index, 1);
 

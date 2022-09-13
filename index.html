@@ -4,16 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="shortcut icon" type="image/png" href="/icon.png" />
+    <link rel="shortcut icon" type="image/png" href="/favicon.png" />
 
     <link
       href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap"
       rel="stylesheet"
     />
-
     <link rel="stylesheet" href="style.css" />
+
     <title>Bankist</title>
   </head>
+
   <body>
     <!-- TOP NAVIGATION -->
     <nav>
@@ -25,9 +26,8 @@
           placeholder="user"
           class="login__input login__input--user"
         />
-        <!-- In practice, use type="password" -->
         <input
-          type="text"
+          type="password"
           placeholder="PIN"
           maxlength="4"
           class="login__input login__input--pin"
@@ -66,12 +66,21 @@
 
       <!-- SUMMARY -->
       <div class="summary">
-        <p class="summary__label">In</p>
-        <p class="summary__value summary__value--in">0000€</p>
-        <p class="summary__label">Out</p>
-        <p class="summary__value summary__value--out">0000€</p>
-        <p class="summary__label">Interest</p>
-        <p class="summary__value summary__value--interest">0000€</p>
+        <div>
+          <p class="summary__label">In</p>
+          <p class="summary__value summary__value--in">0000€</p>
+        </div>
+
+        <div>
+          <p class="summary__label">Out</p>
+          <p class="summary__value summary__value--out">0000€</p>
+        </div>
+
+        <div>
+          <p class="summary__label">Interest</p>
+          <p class="summary__value summary__value--interest">0000€</p>
+        </div>
+
         <button class="btn--sort">&downarrow; SORT</button>
       </div>
 
@@ -79,8 +88,16 @@
       <div class="operation operation--transfer">
         <h2>Transfer money</h2>
         <form class="form form--transfer">
-          <input type="text" class="form__input form__input--to" />
-          <input type="number" class="form__input form__input--amount" />
+          <input
+            type="text"
+            class="form__input form__input--to"
+            aria-label="Input To"
+          />
+          <input
+            type="number"
+            class="form__input form__input--amount"
+            aria-label="Input Amount"
+          />
           <button class="form__btn form__btn--transfer">&rarr;</button>
           <label class="form__label">Transfer to</label>
           <label class="form__label">Amount</label>
@@ -91,7 +108,11 @@
       <div class="operation operation--loan">
         <h2>Request loan</h2>
         <form class="form form--loan">
-          <input type="number" class="form__input form__input--loan-amount" />
+          <input
+            type="number"
+            class="form__input form__input--loan-amount"
+            aria-label="Loan Amount"
+          />
           <button class="form__btn form__btn--loan">&rarr;</button>
           <label class="form__label form__label--loan">Amount</label>
         </form>
@@ -101,11 +122,16 @@
       <div class="operation operation--close">
         <h2>Close account</h2>
         <form class="form form--close">
-          <input type="text" class="form__input form__input--user" />
+          <input
+            type="text"
+            class="form__input form__input--user"
+            aria-label="User Name"
+          />
           <input
             type="password"
             maxlength="6"
             class="form__input form__input--pin"
+            aria-label="User Pin"
           />
           <button class="form__btn form__btn--close">&rarr;</button>
           <label class="form__label">Confirm user</label>
@@ -119,10 +145,6 @@
       </p>
     </main>
 
-    <!-- <footer>
-      &copy; by Jonas Schmedtmann. Don't claim as your own :)
-    </footer> -->
-
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
   </body>
 </html>
