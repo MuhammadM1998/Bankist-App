@@ -4,6 +4,14 @@ Bankist App Project from `The Complete JavaScript Course 2021` by Jonas Schedtma
 
 ![Website Mockup](https://res.cloudinary.com/cloud-m98/image/upload/v1663081133/Bankist-App/Website-Screenshot.png)
 
+### 🔑 Test Users Accounts
+
+Login quickly using one of the following users. You can send money between them too!
+
+- User: `MM`, Password: `1998`
+- User: `JS`, Password: `1111`
+- User: `JD`, Password: `2222`
+
 ### 🔗 Links
 
 - [Live Site](https://bankist-muhammadm1998.vercel.app/)
