@@ -97,7 +97,7 @@ nav {
   transition: all 1s;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
   .app {
     display: flex;
     flex-direction: column;
